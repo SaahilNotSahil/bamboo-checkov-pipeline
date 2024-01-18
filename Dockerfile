@@ -17,4 +17,6 @@ RUN apt-get update && \
 
 COPY . .
 
-ENTRYPOINT ["./scripts/checkov.sh"]
+RUN chmod +x ./scripts/checkov.sh
+
+CMD ["./scripts/checkov.sh"]

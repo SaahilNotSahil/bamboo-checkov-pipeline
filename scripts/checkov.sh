@@ -13,7 +13,7 @@ mkdir -p "${CHECKOV_OUTPUT_DIR}"
 cd "${TERRAFORM_CONFIG_DIR}" || exit
 
 # Run checkov against Terraform configurations
-checkov -d . -o "${CHECKOV_OUTPUT_DIR}/checkov_results.json" --soft-fail
+checkov -d . -o cli -o json --output-file-path console,"${CHECKOV_OUTPUT_DIR}/checkov_results.json" --soft-fail
 
 # Check the exit status of checkov
 CHECKOV_EXIT_CODE=$?
