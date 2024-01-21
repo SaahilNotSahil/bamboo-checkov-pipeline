@@ -175,6 +175,9 @@ public class PlanSpec {
                 .stages(stage())
                 .planRepositories(repository())
                 .triggers(new RemoteTrigger()
-                        .name("GitHub Repo On Push"));
+                        .name("GitHub Repo On Push")
+                        .description("GitHub On Push Event")
+                        .triggerIPAddresses(
+                        "140.82.112.0/20,192.30.252.0/22"));
     }
 }
