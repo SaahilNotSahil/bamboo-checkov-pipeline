@@ -14,6 +14,7 @@ import com.atlassian.bamboo.specs.api.builders.plan.Plan;
 import com.atlassian.bamboo.specs.api.builders.plan.PlanIdentifier;
 import com.atlassian.bamboo.specs.api.builders.plan.Stage;
 import com.atlassian.bamboo.specs.api.builders.project.Project;
+import com.atlassian.bamboo.specs.api.builders.trigger.Trigger;
 import com.atlassian.bamboo.specs.builders.repository.git.UserPasswordAuthentication;
 import com.atlassian.bamboo.specs.builders.repository.github.GitHubRepository;
 import com.atlassian.bamboo.specs.builders.task.CheckoutItem;
@@ -22,6 +23,7 @@ import com.atlassian.bamboo.specs.builders.task.DockerPullImageTask;
 import com.atlassian.bamboo.specs.builders.task.DockerPushImageTask;
 import com.atlassian.bamboo.specs.builders.task.DockerRunContainerTask;
 import com.atlassian.bamboo.specs.builders.task.VcsCheckoutTask;
+import com.atlassian.bamboo.specs.builders.trigger.RemoteTrigger;
 import com.atlassian.bamboo.specs.util.BambooServer;
 
 import io.github.cdimascio.dotenv.Dotenv;
@@ -171,6 +173,8 @@ public class PlanSpec {
         return new Plan(project(), planName, planKey)
                 .description("Plan created from Bamboo Java Specs")
                 .stages(stage())
-                .planRepositories(repository());
+                .planRepositories(repository())
+                .triggers(new RemoteTrigger()
+                        .name("GitHub Repo On Push"));
     }
 }
