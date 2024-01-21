@@ -94,3 +94,9 @@ mvn -Ppublish-specs
 ```
 <BAMBOO_URL>/rest/triggers/latest/remote/changeDetection?planKey=<PLAN-KEY>
 ```
+11. Set the content-type as `application/json`.
+12. In your Bamboo server, go to `Security Settings` and enable the `Allow anonymous users to trigger remote repository change detection and Bamboo Specs detection` option to allow triggering the build from webhooks.
+13. On the top-most navigation bar, go to the `Specs` dropdown and click on the `Set up Specs repository` option.
+14. In project type, select `Build project`, and select your project from the dropdown.
+15. Link your repository in repository host, by providing your GitHub username and personal access token.
+16. Now your webhook is ready to trigger builds from `github push` events.
