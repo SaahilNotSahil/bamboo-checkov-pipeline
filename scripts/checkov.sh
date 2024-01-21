@@ -9,7 +9,7 @@ mkdir -p "${CHECKOV_OUTPUT_DIR}"
 
 cd "${TERRAFORM_CONFIG_DIR}" || exit
 
-checkov -d . -o cli -o sarif --output-file-path console,"${CHECKOV_OUTPUT_DIR}/checkov_results.json" --soft-fail
+checkov -d . -o cli -o sarif --output-file-path console,"${CHECKOV_OUTPUT_DIR}/checkov_results.json"
 
 CHECKOV_EXIT_CODE=$?
 
