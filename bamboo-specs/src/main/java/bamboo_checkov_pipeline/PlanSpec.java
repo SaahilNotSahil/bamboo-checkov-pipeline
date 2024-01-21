@@ -14,7 +14,6 @@ import com.atlassian.bamboo.specs.api.builders.plan.Plan;
 import com.atlassian.bamboo.specs.api.builders.plan.PlanIdentifier;
 import com.atlassian.bamboo.specs.api.builders.plan.Stage;
 import com.atlassian.bamboo.specs.api.builders.project.Project;
-import com.atlassian.bamboo.specs.api.builders.trigger.Trigger;
 import com.atlassian.bamboo.specs.builders.repository.git.UserPasswordAuthentication;
 import com.atlassian.bamboo.specs.builders.repository.github.GitHubRepository;
 import com.atlassian.bamboo.specs.builders.task.CheckoutItem;
@@ -42,8 +41,11 @@ public class PlanSpec {
 
     public static void main(String[] args) throws Exception {
         // by default credentials are read from the '.credentials' file
-        BambooServer bambooServer = new BambooServer(
-                "http://localhost:8085");
+
+        Dotenv dotenv = Dotenv.load();
+        String serverHost = dotenv.get("SERVER_HOST");
+
+        BambooServer bambooServer = new BambooServer(serverHost);
 
         Plan plan = new PlanSpec().createPlan();
         bambooServer.publish(plan);
@@ -99,8 +101,6 @@ public class PlanSpec {
 
     DockerBuildImageTask dockerBuildImageTask() {
         Path dockerfilePath = Paths.get("bamboo.Dockerfile");
-
-        System.out.println(dockerfilePath);
 
         String fileContent = "";
 
